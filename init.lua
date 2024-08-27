@@ -181,6 +181,7 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 
 vim.api.nvim_set_keymap('n', '<leader>ps', ':Lazy sync<CR>', { noremap = true, silent = true, desc = 'Plugins show' })
 vim.api.nvim_set_keymap('n', '<leader>pS', ':Lazy sync<CR>', { noremap = true, silent = true, desc = 'Plugins Sync' })
+vim.api.nvim_set_keymap('n', '<leader>pi', ':Lazy install<CR>', { noremap = true, silent = true, desc = 'Plugin install' })
 vim.api.nvim_set_keymap('n', '<leader>pa', ':Lazy sync<CR> :MasonUpdate<CR>', { noremap = true, silent = true, desc = 'Update Lazy and Mason' })
 
 -- TIP: Disable arrow keys in normal mode
@@ -695,12 +696,12 @@ require('lazy').setup({
           -- `friendly-snippets` contains a variety of premade snippets.
           --    See the README about individual language/framework/plugin snippets:
           --    https://github.com/rafamadriz/friendly-snippets
-          -- {
-          --   'rafamadriz/friendly-snippets',
-          --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
-          --   end,
-          -- },
+          {
+            'rafamadriz/friendly-snippets',
+            config = function()
+              require('luasnip.loaders.from_vscode').lazy_load()
+            end,
+          },
         },
       },
       'saadparwaiz1/cmp_luasnip',
