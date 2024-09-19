@@ -91,8 +91,10 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 
 vim.api.nvim_set_keymap('n', '<leader>ps', ':Lazy sync<CR>', { noremap = true, silent = true, desc = 'Plugins show' })
 vim.api.nvim_set_keymap('n', '<leader>pS', ':Lazy sync<CR>', { noremap = true, silent = true, desc = 'Plugins Sync' })
-vim.api.nvim_set_keymap('n', '<leader>pi', ':Lazy install<CR>', { noremap = true, silent = true, desc = 'Plugin install' })
-vim.api.nvim_set_keymap('n', '<leader>pa', ':Lazy sync<CR> :MasonUpdate<CR>', { noremap = true, silent = true, desc = 'Update Lazy and Mason' })
+vim.api.nvim_set_keymap('n', '<leader>pi', ':Lazy install<CR>',
+  { noremap = true, silent = true, desc = 'Plugin install' })
+vim.api.nvim_set_keymap('n', '<leader>pa', ':Lazy sync<CR> :MasonUpdate<CR>',
+  { noremap = true, silent = true, desc = 'Update Lazy and Mason' })
 
 -- TIP: Disable arrow keys in normal mode
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -147,94 +149,91 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
-  -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+    -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
+    'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
-  -- NOTE: Plugins can also be added by using a table,
-  -- with the first argument being the link and the following
-  -- keys can be used to configure plugin behavior/loading/etc.
-  --
-  -- Use `opts = {}` to force a plugin to be loaded.
-  --
+    -- NOTE: Plugins can also be added by using a table,
+    -- with the first argument being the link and the following
+    -- keys can be used to configure plugin behavior/loading/etc.
+    --
+    -- Use `opts = {}` to force a plugin to be loaded.
+    --
 
-  -- Here is a more advanced example where we pass configuration
-  -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
-  --    require('gitsigns').setup({ ... })
-  --
-  -- See `:help gitsigns` to understand what the configuration keys do
-  { -- Adds git related signs to the gutter, as well as utilities for managing changes
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    },
-  },
-
-  -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
-  --
-  -- This is often very useful to both group configuration, as well as handle
-  -- lazy loading plugins that don't need to be loaded immediately at startup.
-  --
-  -- For example, in the following configuration, we use:
-  --  event = 'VimEnter'
-  --
-  -- which loads which-key before all the UI elements are loaded. Events can be
-  -- normal autocommands events (`:help autocmd-events`).
-  --
-  -- Then, because we use the `config` key, the configuration only runs
-  -- after the plugin has been loaded:
-  --  config = function() ... end
-
-  { -- Useful plugin to show you pending keybinds.
-    'folke/which-key.nvim',
-    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
-    opts = {
-      icons = {
-        -- set icon mappings to true if you have a Nerd Font
-        mappings = vim.g.have_nerd_font,
-        -- If you are using a Nerd Font: set icons.keys to an empty table which will use the
-        -- default whick-key.nvim defined Nerd Font icons, otherwise define a string table
-        keys = vim.g.have_nerd_font and {} or {
-          Up = '<Up> ',
-          Down = '<Down> ',
-          Left = '<Left> ',
-          Right = '<Right> ',
-          C = '<C-…> ',
-          M = '<M-…> ',
-          D = '<D-…> ',
-          S = '<S-…> ',
-          CR = '<CR> ',
-          Esc = '<Esc> ',
-          ScrollWheelDown = '<ScrollWheelDown> ',
-          ScrollWheelUp = '<ScrollWheelUp> ',
-          NL = '<NL> ',
-          BS = '<BS> ',
-          Space = '<Space> ',
-          Tab = '<Tab> ',
-          F1 = '<F1>',
-          F2 = '<F2>',
-          F3 = '<F3>',
-          F4 = '<F4>',
-          F5 = '<F5>',
-          F6 = '<F6>',
-          F7 = '<F7>',
-          F8 = '<F8>',
-          F9 = '<F9>',
-          F10 = '<F10>',
-          F11 = '<F11>',
-          F12 = '<F12>',
+    -- Here is a more advanced example where we pass configuration
+    -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
+    --    require('gitsigns').setup({ ... })
+    --
+    -- See `:help gitsigns` to understand what the configuration keys do
+    { -- Adds git related signs to the gutter, as well as utilities for managing changes
+      'lewis6991/gitsigns.nvim',
+      opts = {
+        signs = {
+          add = { text = '+' },
+          change = { text = '~' },
+          delete = { text = '_' },
+          topdelete = { text = '‾' },
+          changedelete = { text = '~' },
         },
       },
-      config = function() -- This is the function that runs, AFTER loading
-        require('which-key').setup()
+    },
 
+    -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
+    --
+    -- This is often very useful to both group configuration, as well as handle
+    -- lazy loading plugins that don't need to be loaded immediately at startup.
+    --
+    -- For example, in the following configuration, we use:
+    --  event = 'VimEnter'
+    --
+    -- which loads which-key before all the UI elements are loaded. Events can be
+    -- normal autocommands events (`:help autocmd-events`).
+    --
+    -- Then, because we use the `config` key, the configuration only runs
+    -- after the plugin has been loaded:
+    --  config = function() ... end
+
+    {                     -- Useful plugin to show you pending keybinds.
+      'folke/which-key.nvim',
+      event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+      opts = {
+        icons = {
+          -- set icon mappings to true if you have a Nerd Font
+          mappings = vim.g.have_nerd_font,
+          -- If you are using a Nerd Font: set icons.keys to an empty table which will use the
+          -- default whick-key.nvim defined Nerd Font icons, otherwise define a string table
+          keys = vim.g.have_nerd_font and {} or {
+            Up = '<Up> ',
+            Down = '<Down> ',
+            Left = '<Left> ',
+            Right = '<Right> ',
+            C = '<C-…> ',
+            M = '<M-…> ',
+            D = '<D-…> ',
+            S = '<S-…> ',
+            CR = '<CR> ',
+            Esc = '<Esc> ',
+            ScrollWheelDown = '<ScrollWheelDown> ',
+            ScrollWheelUp = '<ScrollWheelUp> ',
+            NL = '<NL> ',
+            BS = '<BS> ',
+            Space = '<Space> ',
+            Tab = '<Tab> ',
+            F1 = '<F1>',
+            F2 = '<F2>',
+            F3 = '<F3>',
+            F4 = '<F4>',
+            F5 = '<F5>',
+            F6 = '<F6>',
+            F7 = '<F7>',
+            F8 = '<F8>',
+            F9 = '<F9>',
+            F10 = '<F10>',
+            F11 = '<F11>',
+            F12 = '<F12>',
+          },
+        },
         -- Document existing key chains
-        require('which-key').add {
+        spec = {
           { '<leader>c', group = '[C]ode' },
           { '<leader>d', group = '[D]ocument' },
           { '<leader>r', group = '[R]ename' },
@@ -243,8 +242,8 @@ require('lazy').setup({
           { '<leader>g', group = '[G]it' },
           { '<leader>p', group = '[P]ackages' },
           { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-        }
-      end,
+        },
+      },
     },
 
     -- NOTE: Plugins can specify dependencies.
@@ -276,7 +275,7 @@ require('lazy').setup({
         { 'nvim-telescope/telescope-ui-select.nvim' },
 
         -- Useful for getting pretty icons, but requires a Nerd Font.
-        { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+        { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
       },
       config = function()
         -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -376,7 +375,7 @@ require('lazy').setup({
         },
       },
     },
-    { 'Bilal2453/luvit-meta', lazy = true },
+    { 'Bilal2453/luvit-meta',    lazy = true },
     {
       -- Main LSP Configuration
       'neovim/nvim-lspconfig',
@@ -388,7 +387,7 @@ require('lazy').setup({
 
         -- Useful status updates for LSP.
         -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-        { 'j-hui/fidget.nvim', opts = {} },
+        { 'j-hui/fidget.nvim',       opts = {} },
 
         -- Allows extra capabilities provided by nvim-cmp
         'hrsh7th/cmp-nvim-lsp',
@@ -708,7 +707,7 @@ require('lazy').setup({
       end,
     },
     { 'ellisonleao/gruvbox.nvim' },
-    { 'catppuccin/nvim', name = 'catppuccin' },
+    { 'catppuccin/nvim',         name = 'catppuccin' },
     { -- You can easily change to a different colorscheme.
       -- Change the name of the colorscheme plugin below, and then
       -- change the command in the config to whatever the name of that colorscheme is.
@@ -736,8 +735,6 @@ require('lazy').setup({
         -- Better Around/Inside textobjects
         --
         -- Examples:
-        --  - va)  - [V]isually select [A]round [)]paren
-        --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
         --  - ci'  - [C]hange [I]nside [']quote
         require('mini.ai').setup { n_lines = 500 }
 
@@ -844,8 +841,7 @@ require('lazy').setup({
         lazy = '💤 ',
       },
     },
-  },
-})
+  })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
